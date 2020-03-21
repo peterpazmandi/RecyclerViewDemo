@@ -1,7 +1,7 @@
-package com.inspirecoding.recyclerview_practice_1.model
+package com.inspirecoding.recyclerviewdemo.model
 
 import android.os.Parcelable
-import com.inspirecoding.recyclerview_practice_1.enums.Prioirities
+import com.inspirecoding.recyclerviewdemo.enums.Prioirities
 import kotlinx.android.parcel.Parcelize
 import java.time.LocalDate
 
