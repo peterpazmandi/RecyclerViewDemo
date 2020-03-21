@@ -1,4 +1,4 @@
-package com.inspirecoding.recyclerview_practice_1.enums
+package com.inspirecoding.recyclerviewdemo.enums
 
 enum class Prioirities
 {
