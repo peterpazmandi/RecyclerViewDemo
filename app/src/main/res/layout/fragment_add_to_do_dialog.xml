@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lightGrey"
+    android:padding="@dimen/margin_medium"
+    tools:context=".fragments.AddToDoDialog">
+
+    <TextView
+        android:id="@+id/tv_dialog_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="Add ToDo"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textsize_xlarge"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/horizontalLine"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@+id/tv_dialog_title"/>
+
+    <TextView
+        android:id="@+id/tv_title_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:layout_marginTop="@dimen/margin_large"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textsize_large"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalLine" />
+
+    <EditText
+        android:id="@+id/et_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:textSize="@dimen/textsize_large"
+        android:textColor="@color/darkGrey"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_text" />
+
+    <TextView
+        android:id="@+id/tv_description_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:textColor="@color/white"
+        android:text="Description"
+        android:textSize="@dimen/textsize_large"
+        app:layout_constraintTop_toBottomOf="@+id/et_title" />
+
+    <EditText
+        android:id="@+id/et_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:textColor="@color/darkGrey"
+        android:textSize="@dimen/textsize_large"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_description_text" />
+
+    <TextView
+        android:id="@+id/tv_priority_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:text="Priority"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textsize_large"
+        app:layout_constraintTop_toBottomOf="@+id/et_description" />
+
+    <LinearLayout
+        android:id="@+id/ll_priority"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_priority_text">
+        <Spinner
+            android:id="@+id/sr_priority"
+            style="@style/Widget.AppCompat.DropDownItem.Spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/textsize_large" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_dueDate_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        android:text="Due date"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textsize_large"
+        app:layout_constraintTop_toBottomOf="@+id/ll_priority" />
+
+    <DatePicker
+        android:id="@+id/dp_dueDate"
+        style="@android:style/Widget.DatePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_dueDate_text" />
+
+    <Button
+        android:id="@+id/btn_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/textsize_xlarge"
+        android:textColor="@color/colorPrimary"
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/margin_4xlarge"
+        app:layout_constraintTop_toBottomOf="@+id/dp_dueDate"
+        app:layout_constraintRight_toRightOf="parent"
+        android:text="Add"/>
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cancel"
+        android:textColor="@color/white"
+        android:textSize="@dimen/textsize_xlarge"
+        android:layout_marginEnd="@dimen/margin_3xlarge"
+        app:layout_constraintRight_toLeftOf="@+id/btn_add"
+        app:layout_constraintTop_toTopOf="@+id/btn_add"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_add"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
