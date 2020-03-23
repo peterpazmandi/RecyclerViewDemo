@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_graph"
+    app:startDestination="@id/splashFragment">
+
+    <dialog
+        android:id="@+id/addToDoDialog"
+        android:name="com.inspirecoding.recyclerviewdemo.fragments.AddToDoDialog"
+        android:label="fragment_add_to_do_dialog"
+        tools:layout="@layout/fragment_add_to_do_dialog" >
+        <argument
+            android:name="toDo"
+            app:nullable="true"
+            android:defaultValue="@null"
+            app:argType="com.inspirecoding.recyclerview_practice_1.model.ToDo"/>
+        <argument
+            android:name="position"
+            android:defaultValue="0"
+            app:argType="integer"/>
+    </dialog>
+    <fragment
+        android:id="@+id/recyclerFragment"
+        android:name="com.inspirecoding.recyclerviewdemo.fragments.RecyclerFragment"
+        android:label="fragment_recycler"
+        tools:layout="@layout/fragment_recycler" >
+        <action
+            android:id="@+id/action_recyclerFragment_to_addToDoDialog"
+            app:destination="@id/addToDoDialog" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.inspirecoding.recyclerviewdemo.fragments.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_recyclerFragment"
+            app:destination="@id/recyclerFragment" />
+    </fragment>
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.inspirecoding.recyclerviewdemo.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
+</navigation>

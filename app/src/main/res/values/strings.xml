@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RecyclerView_practice_1</string>
+    <string name="app_name">RecyclerViewDemo</string>
 
     <string name="inspire_coding"><b>Inspire Coding</b></string>
     <string name="inspirecoding_dot_app">inspirecoding.app</string>
