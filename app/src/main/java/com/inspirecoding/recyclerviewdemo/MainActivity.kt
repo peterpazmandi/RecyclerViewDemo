@@ -15,3 +15,12 @@ class MainActivity : AppCompatActivity()
         setSupportActionBar(toolbar)
     }
 }
+
+
+fun main(args: Array<String>)
+{
+    var x = 4
+    var y = ++x
+    println("$y")
+    println("$x")
+}
