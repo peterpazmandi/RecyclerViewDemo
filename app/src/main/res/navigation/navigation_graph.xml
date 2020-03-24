@@ -14,7 +14,7 @@
             android:name="toDo"
             app:nullable="true"
             android:defaultValue="@null"
-            app:argType="com.inspirecoding.recyclerview_practice_1.model.ToDo"/>
+            app:argType="com.inspirecoding.recyclerviewdemo.model.ToDo"/>
         <argument
             android:name="position"
             android:defaultValue="0"
