@@ -1,5 +1,6 @@
 package com.inspirecoding.recyclerviewdemo.adapter
 
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavController
@@ -15,16 +16,23 @@ class ToDoAdapter(private val listOfToDos: MutableList<ToDo>): RecyclerView.Adap
 {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ToDoAdapter.ToDoHolder
     {
-        TODO("Not yet implemented")
+        val toDoHolder = ToDoHolder(
+            LayoutInflater
+                .from(parent.context)
+                .inflate(
+                    R.layout.item_todo_recyclerview,
+                    parent,
+                    false)
+        )
+
+        return toDoHolder
     }
 
-    override fun getItemCount(): Int {
-        TODO("Not yet implemented")
-    }
+    override fun getItemCount() = listOfToDos.size
 
     override fun onBindViewHolder(holder: ToDoAdapter.ToDoHolder, position: Int)
     {
-        TODO("Not yet implemented")
+        holder.bindToDo(listOfToDos[position])
     }
 
     inner class ToDoHolder(private val view: View): RecyclerView.ViewHolder(view), View.OnClickListener

@@ -7,13 +7,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.inspirecoding.recyclerviewdemo.R
+import com.inspirecoding.recyclerviewdemo.adapter.ToDoAdapter
+import com.inspirecoding.recyclerviewdemo.viewmodel.ToDoViewModel
 import kotlinx.android.synthetic.main.fragment_recycler.*
+import kotlinx.android.synthetic.main.fragment_recycler.view.*
 
 class RecyclerFragment : Fragment()
 {
+    private val toDoViewModel by
+        navGraphViewModels<ToDoViewModel>(R.id.navigation_graph)
+    private lateinit var toDoAdapter: ToDoAdapter
+
     private var isFabOpen = false
+
 
     override fun onStart()
     {
@@ -24,8 +34,15 @@ class RecyclerFragment : Fragment()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View?
     {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_recycler, container, false )
+        val view = inflater.inflate(R.layout.fragment_recycler, container, false)
+
+        toDoAdapter = ToDoAdapter(toDoViewModel.listOfToDos)
+        view.recyclerView.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = toDoAdapter
+        }
+
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
