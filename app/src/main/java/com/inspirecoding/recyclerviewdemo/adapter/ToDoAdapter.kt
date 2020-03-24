@@ -2,9 +2,12 @@ package com.inspirecoding.recyclerviewdemo.adapter
 
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.inspirecoding.recyclerviewdemo.R
 import com.inspirecoding.recyclerviewdemo.enums.Prioirities
+import com.inspirecoding.recyclerviewdemo.fragments.RecyclerFragmentDirections
 import com.inspirecoding.recyclerviewdemo.model.ToDo
 import kotlinx.android.synthetic.main.item_todo_recyclerview.view.*
 
@@ -45,7 +48,9 @@ class ToDoAdapter(private val listOfToDos: MutableList<ToDo>): RecyclerView.Adap
 
         override fun onClick(view: View)
         {
-
+            val navController: NavController = Navigation.findNavController(view)
+            val action = RecyclerFragmentDirections.actionRecyclerFragmentToAddToDoDialog(listOfToDos[adapterPosition], adapterPosition)
+            navController.navigate(action)
         }
     }
 }
