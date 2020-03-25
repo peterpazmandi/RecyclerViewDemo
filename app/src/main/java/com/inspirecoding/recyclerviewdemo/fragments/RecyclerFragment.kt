@@ -10,8 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-
+import androidx.recyclerview.widget.RecyclerView
 import com.inspirecoding.recyclerviewdemo.R
 import com.inspirecoding.recyclerviewdemo.adapter.ToDoAdapter
 import com.inspirecoding.recyclerviewdemo.viewmodel.ToDoViewModel
@@ -26,6 +27,47 @@ class RecyclerFragment : Fragment()
 
     private var isFabOpen = false
 
+    private val itemTouchHelper_reOrder by lazy {
+
+        val simpleItemTouchCallback = object : ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP or ItemTouchHelper.DOWN or ItemTouchHelper.START or ItemTouchHelper.END, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT)
+        {
+            override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean
+            {
+                val from = viewHolder.adapterPosition
+                val to = target.adapterPosition
+                toDoViewModel.moveItem(from, to)
+                toDoAdapter.notifyItemMoved(from, to)
+
+                return true
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int)
+            {
+                val from = viewHolder.adapterPosition
+                toDoViewModel.listOfToDos.removeAt(from)
+                toDoAdapter.notifyItemRemoved(from)
+            }
+
+            override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int)
+            {
+                super.onSelectedChanged(viewHolder, actionState)
+
+                if (actionState == ItemTouchHelper.ACTION_STATE_DRAG)
+                {
+                    viewHolder?.itemView?.alpha = 0.5f
+                }
+            }
+
+            override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder)
+            {
+                super.clearView(recyclerView, viewHolder)
+
+                viewHolder.itemView.alpha = 1.0f
+            }
+        }
+
+        ItemTouchHelper(simpleItemTouchCallback)
+    }
 
     override fun onStart()
     {
@@ -33,7 +75,6 @@ class RecyclerFragment : Fragment()
 
         (activity as AppCompatActivity).supportActionBar?.show()
     }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View?
     {
         val view = inflater.inflate(R.layout.fragment_recycler, container, false)
@@ -48,9 +89,11 @@ class RecyclerFragment : Fragment()
             toDoAdapter.notifyDataSetChanged()
         })
 
+        itemTouchHelper_reOrder
+            .attachToRecyclerView(view.recyclerView)
+
         return view
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
         super.onViewCreated(view, savedInstanceState)
@@ -71,7 +114,6 @@ class RecyclerFragment : Fragment()
             hideFabMenu()
         }
     }
-
     private fun showFabMenu()
     {
         isFabOpen = true

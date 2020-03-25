@@ -30,4 +30,18 @@ class ToDoViewModel: ViewModel()
         listOfToDos.add(toDo)
         _listOfToDos.value = listOfToDos
     }
-}
+
+    fun moveItem(from: Int, to: Int)
+    {
+        val fromTodo = listOfToDos[from]
+        listOfToDos.removeAt(from)
+
+        if (to < from)
+        {
+            listOfToDos.add(to, fromTodo)
+        }
+        else
+        {
+            listOfToDos.add(to - 1, fromTodo)
+        }
+    }}
