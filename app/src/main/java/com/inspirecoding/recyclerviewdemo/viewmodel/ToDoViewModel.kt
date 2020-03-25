@@ -24,4 +24,10 @@ class ToDoViewModel: ViewModel()
     private val _listOfToDos = MutableLiveData<MutableList<ToDo>>()
     val listOfToDosLiveData: LiveData<MutableList<ToDo>>
         get() = _listOfToDos
+
+    fun addToDo(toDo: ToDo)
+    {
+        listOfToDos.add(toDo)
+        _listOfToDos.value = listOfToDos
+    }
 }
