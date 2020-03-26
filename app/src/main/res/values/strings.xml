@@ -16,4 +16,8 @@
     <string name="low">Low</string>
     <string name="medium">Medium</string>
     <string name="high">High</string>
+
+
+    <string name="modify_todo">Modify ToDo</string>
+    <string name="modify">Modify</string>
 </resources>

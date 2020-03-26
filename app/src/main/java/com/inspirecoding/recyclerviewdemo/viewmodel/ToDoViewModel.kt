@@ -44,4 +44,11 @@ class ToDoViewModel: ViewModel()
         {
             listOfToDos.add(to - 1, fromTodo)
         }
-    }}
+    }
+
+    fun updateToDo(position: Int, toDo: ToDo)
+    {
+        listOfToDos.set(position, toDo)
+        _listOfToDos.value = listOfToDos
+    }
+}
