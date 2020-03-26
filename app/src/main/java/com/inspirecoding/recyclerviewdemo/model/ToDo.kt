@@ -8,7 +8,7 @@ import java.time.LocalDate
 @Parcelize
 data class ToDo(
     var title: String,
-    var description: String,
     var dueDate: String,
+    var description: String,
     var priority: Prioirities
 ) : Parcelable
