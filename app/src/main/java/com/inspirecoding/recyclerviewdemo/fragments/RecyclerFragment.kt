@@ -113,6 +113,11 @@ class RecyclerFragment : Fragment()
             findNavController().navigate(R.id.action_recyclerFragment_to_addToDoDialog)
             hideFabMenu()
         }
+
+        fab_search.setOnClickListener {
+            findNavController().navigate(R.id.action_recyclerFragment_to_searchFragment)
+            hideFabMenu()
+        }
     }
     private fun showFabMenu()
     {

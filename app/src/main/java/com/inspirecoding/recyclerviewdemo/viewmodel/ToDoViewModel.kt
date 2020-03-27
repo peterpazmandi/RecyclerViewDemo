@@ -11,6 +11,7 @@ class ToDoViewModel: ViewModel()
     private val TAG = "ToDoViewModel"
 
     var listOfToDos: MutableList<ToDo> = mutableListOf()
+    private var listOfToDos_full: MutableList<ToDo> = mutableListOf()
 
 //    init {
 //        listOfToDos.add(ToDo("First todo", "01.01.2020", "This is the first test todo", Prioirities.LOW ))
@@ -27,21 +28,38 @@ class ToDoViewModel: ViewModel()
 
     fun addToDo(toDo: ToDo)
     {
+        listOfToDos_full.add(toDo)
         listOfToDos.add(toDo)
         _listOfToDos.value = listOfToDos
     }
-
+    fun updateToDo(position: Int, toDo: ToDo)
+    {
+        listOfToDos_full.set(position, toDo)
+        listOfToDos.set(position, toDo)
+        _listOfToDos.value = listOfToDos
+    }
     fun moveItem(from: Int, to: Int)
     {
         val fromTodo = listOfToDos[from]
         listOfToDos.removeAt(from)
+        listOfToDos_full.removeAt(from)
 
         if (to < from)
         {
             listOfToDos.add(to, fromTodo)
+            listOfToDos_full.add(to, fromTodo)
         }
         else
         {
             listOfToDos.add(to - 1, fromTodo)
+            listOfToDos_full.add(to - 1, fromTodo)
         }
-    }}
+    }
+    fun filter (text: String)
+    {
+        val result = listOfToDos_full.filter { it.title.contains(text) }
+        listOfToDos.clear()
+        listOfToDos.addAll(listOfToDos_full.filter { it.title.contains(text) })
+        _listOfToDos.value = listOfToDos
+    }
+}
