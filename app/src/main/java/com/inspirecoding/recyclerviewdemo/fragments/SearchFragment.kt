@@ -1,14 +1,12 @@
 package com.inspirecoding.recyclerviewdemo.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.navigation.navGraphViewModels
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-
 import com.inspirecoding.recyclerviewdemo.R
 import com.inspirecoding.recyclerviewdemo.viewmodel.SearchFragmentViewModel
 import com.inspirecoding.recyclerviewdemo.viewmodel.ToDoViewModel

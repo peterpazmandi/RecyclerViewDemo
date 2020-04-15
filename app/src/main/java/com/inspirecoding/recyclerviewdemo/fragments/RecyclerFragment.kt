@@ -21,8 +21,7 @@ import kotlinx.android.synthetic.main.fragment_recycler.view.*
 
 class RecyclerFragment : Fragment()
 {
-    private val toDoViewModel by
-        navGraphViewModels<ToDoViewModel>(R.id.navigation_graph)
+    private val toDoViewModel by navGraphViewModels<ToDoViewModel>(R.id.navigation_graph)
     private lateinit var toDoAdapter: ToDoAdapter
 
     private var isFabOpen = false
@@ -89,8 +88,7 @@ class RecyclerFragment : Fragment()
             toDoAdapter.notifyDataSetChanged()
         })
 
-        itemTouchHelper_reOrder
-            .attachToRecyclerView(view.recyclerView)
+        itemTouchHelper_reOrder.attachToRecyclerView(view.recyclerView)
 
         return view
     }

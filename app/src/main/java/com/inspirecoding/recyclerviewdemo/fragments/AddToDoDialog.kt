@@ -1,11 +1,13 @@
 package com.inspirecoding.recyclerviewdemo.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.DialogFragment
+import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
 import com.inspirecoding.recyclerviewdemo.R
 import com.inspirecoding.recyclerviewdemo.enums.Prioirities
@@ -16,6 +18,8 @@ import kotlinx.android.synthetic.main.fragment_add_to_do_dialog.view.*
 
 class AddToDoDialog : DialogFragment()
 {
+    private val TAG = "AddToDoDialog"
+
     private lateinit var rootView: View
     private val toDoViewModel by navGraphViewModels<ToDoViewModel>(R.id.navigation_graph)
 
@@ -29,7 +33,19 @@ class AddToDoDialog : DialogFragment()
     {
         super.onViewCreated(view, savedInstanceState)
 
+        val safeArgs: AddToDoDialogArgs by navArgs()
+        val toDo = safeArgs.toDo
+        val position = safeArgs.position
+        Log.i(TAG, "$toDo")
+        Log.i(TAG, "$position")
+
         initSpinner()
+
+        toDo?.let {
+            rootView.tv_dialog_title.text = getString(R.string.modify_todo)
+            rootView.btn_add.text = getString(R.string.modify)
+            populateForm(it)
+        }
 
         rootView.tv_cancel.setOnClickListener {
             dismiss()
@@ -39,6 +55,23 @@ class AddToDoDialog : DialogFragment()
             toDoViewModel.addToDo(createToDo())
             dismiss()
         }
+    }
+
+    private fun populateForm(toDo: ToDo)
+    {
+        rootView.et_title.setText(toDo.title)
+        rootView.et_description.setText(toDo.description)
+
+        when(toDo.priority)
+        {
+            Prioirities.LOW -> rootView.sr_priority.setSelection(0)
+            Prioirities.MEDIUM -> rootView.sr_priority.setSelection(1)
+            Prioirities.HIGH -> rootView.sr_priority.setSelection(2)
+        }
+        val day = toDo.dueDate.substringBefore('.').toInt()
+        val month = toDo.dueDate.substringBeforeLast('.').substringAfter('.').toInt()
+        val year = toDo.dueDate.substringAfterLast('.').toInt()
+        rootView.dp_dueDate.updateDate(year, month, day)
     }
 
     private fun initSpinner()
