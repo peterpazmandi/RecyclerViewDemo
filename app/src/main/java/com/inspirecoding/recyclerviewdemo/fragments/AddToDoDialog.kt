@@ -52,7 +52,14 @@ class AddToDoDialog : DialogFragment()
         }
 
         rootView.btn_add.setOnClickListener {
-            toDoViewModel.addToDo(createToDo())
+            if(toDo != null)
+            {
+                toDoViewModel.updateToDo(position, createToDo())
+            }
+            else
+            {
+                toDoViewModel.addToDo(createToDo())
+            }
             dismiss()
         }
     }
